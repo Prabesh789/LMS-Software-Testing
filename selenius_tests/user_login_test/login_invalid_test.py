@@ -18,21 +18,21 @@ driver.get("https://openlibrary.org/account/login")
 driver.maximize_window()
 
 try:
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "username")))
+    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "username")))
     driver.find_element(By.ID, "username").send_keys(OPENLIBRARY_USERNAME)
     driver.find_element(By.ID, "password").send_keys(INVALID_PASSWORD)
 
-    login_button = WebDriverWait(driver, 10).until(
+    login_button = WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button[name='login']"))
     )
     login_button.click()
 
     # Wait for error message
-    error_msg = WebDriverWait(driver, 10).until(
+    error_msg = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.CLASS_NAME, "flash-error"))
     )
 
-    print("✅ Login with invalid credentials - PASSED")
+    print("Login with invalid credentials - PASSED")
 
 except Exception as e:
     print("Login with invalid credentials - FAILED")

@@ -18,18 +18,18 @@ driver.maximize_window()
 
 try:
     # Wait for username field to load and input credentials
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "username")))
+    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "username")))
     driver.find_element(By.ID, "username").send_keys(OPENLIBRARY_USERNAME)
     driver.find_element(By.ID, "password").send_keys(OPENLIBRARY_PASSWORD)
 
     # Wait for and click the login button
-    login_button = WebDriverWait(driver, 10).until(
+    login_button = WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "button[name='login']"))
     )
     login_button.click()
 
     # Wait for successful login indicator — you may need to change this
-    WebDriverWait(driver, 10).until(
+    WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.LINK_TEXT, "prabesh78"))
     )
     print("Login with valid credentials - PASSED")
